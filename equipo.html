@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin: 0; padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: #333;
+        }
+
+        /* --- IMÁGENES DEL SLIDE --- */
+        .slide {
+            position: absolute;
+            width: 100%; height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: slideAnimation 24s infinite; 
+        }
+
+        /* Definición de las imágenes de fondo */
+        .slide:nth-child(1) {
+            background-image: url('https://nramirezh.github.io/ute/1773067889836.jpg');
+            animation-delay: 0s;
+        }
+        .slide:nth-child(2) {
+            background-image: url('https://nramirezh.github.io/ute/1773067889700.jpg');
+            animation-delay: 6s; /* Comienza cuando la primera empieza a desvanecerse */
+        }
+        .slide:nth-child(3) {
+            background-image: url('https://nramirezh.github.io/ute/1773067889984.jpg');
+            animation-delay: 12s;
+        }
+        .slide:nth-child(4) {
+            background-image: url('https://nramirezh.github.io/ute/1773067890062.jpg');
+            animation-delay: 18s;
+        }
+
+        @keyframes slideAnimation {
+            0% { opacity: 0; }
+            5% { opacity: 1; }
+            20% { opacity: 1; }
+            25% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* --- TABLA ANIMADA (Cambio de lado) --- */
+        .table-container {
+            position: absolute;
+            top: 21%;
+            /* Quitamos el left fijo y ponemos la animación */
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(10px); 
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            
+            /* Animación de posición: misma duración que el slide (24s) */
+            animation: moveTable 24s infinite;
+        }
+
+        @keyframes moveTable {
+            /* FOTO 1 y 2 (0s a 12s): Lado Izquierdo */
+            0%, 48% { 
+                left: 50%; 
+                transform: translate(0, -50%);
+                /*left: 10%; 
+                transform: translate(0, -50%)*/; 
+            }
+            /* Transición suave entre el segundo 11 y 12 */
+            50% { 
+                left: 50%; 
+                transform: translate(-100%, -50%); 
+            }
+            /* FOTO 3 y 4 (12s a 24s): Lado Derecho */
+            52%, 98% { 
+                left: 50%; 
+                transform: translate(-100%, -50%); 
+            }
+            /* Volver al inicio */
+            100% { 
+                left: 50%; 
+                transform: translate(0, -50%); 
+            }
+        }
+
+        /* ESTILOS TABLA */
+        table { border-collapse: collapse; min-width: 500px; color: #1a1a1a; }
+        th { background-color: #2c82cb; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; }
+        tr:nth-child(even) { background-color: rgba(0,0,0,0.02); }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+
+        <div class="overlay"></div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>UTE MANTENIMIENTO</th>
+                        <th>PERSONAL OBRA</th>
+                        <th>VEHÍCULOS</th>
+                        <th>VEHÍCULOS TRANSPORTE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Jefe de Servicio</td>
+                        <td>Encargado General</td>
+                        <td>Turismos eléctricos (2)</td>
+                        <td>Camión</td>
+                    </tr>
+                    <tr>
+                        <td>Jefe de Producción</td>
+                        <td>Encargado</td>
+                        <td>Turismos diesel</td>
+                        <td>Camión grúa</td>
+                    </tr>
+                    <tr>
+                        <td>Técnico Medio</td>
+                        <td>Operarios (13)</td>
+                        <td>Furgonetas elec.</td>
+                        <td>Furgón grande</td>
+                    </tr>
+                    <tr>
+                        <td>Topógrafo</td>
+                        <td></td>
+                        <td>Furgonetas gas.</td>
+                        <td>Minipala</td>
+                    </tr>
+                    <tr>
+                        <td>Auxiliar Técnico</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Administrativos (2)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
